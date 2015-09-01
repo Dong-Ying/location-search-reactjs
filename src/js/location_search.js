@@ -13,8 +13,14 @@ var LocationSearch = React.createClass({
             this.setState({locations: data});
         }.bind(this));
     },
-    handleLike: function (likedPlace) {
-        this.setState({likedPlaces: this.state.likedPlaces.concat([likedPlace])})
+    handleLike: function (location) {
+        this.setState({likedPlaces: this.state.likedPlaces.concat([location])})
+    },
+    handleUnlike: function (location) {
+        var likedPlaces = _.reject(this.state.likedPlaces, function (likedPlace) {
+            return likedPlace.name == location.name
+        });
+        this.setState({likedPlaces: likedPlaces});
     },
     render: function () {
         return (
@@ -28,7 +34,8 @@ var LocationSearch = React.createClass({
                 </div>
 
                 <div className="row">
-                    <SearchResult locations={this.state.locations} onLike={this.handleLike}/>
+                    <SearchResult locations={this.state.locations} onLike={this.handleLike}
+                                  onUnlike={this.handleUnlike}/>
                     <LikedPlaces likedPlaces={this.state.likedPlaces}/>
                 </div>
             </div>
