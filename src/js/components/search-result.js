@@ -9,8 +9,7 @@ var SearchResult = React.createClass({
                     {
                         this.props.locations.map(function (location) {
                             return (
-                                <Location location={location} onLike={this.props.onLike}
-                                          onUnlike={this.props.onUnlike}/>
+                                <Location location={location} onToggleLike={this.props.onToggleLike}/>
                             )
                         }.bind(this))
                     }

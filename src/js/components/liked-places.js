@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 var LikedPlaces = React.createClass({
     render: function () {
-        var likedPlacesNodes = this.props.likedPlaces.map(function (likedPlace) {
+        var likedPlacesNodes = _.where(this.props.locations, {liked: true}).map(function (likedPlace) {
             return (
                 <LikedPlace place={likedPlace} onUnlike={this.props.onUnlike}/>
             )

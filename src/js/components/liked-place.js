@@ -1,8 +1,8 @@
+/** @jsx React.DOM */
 var LikedPlace = React.createClass({
     unlike: function(e) {
         e.preventDefault();
-        var unlikedPlace = $(e.currentTarget).parent().text();
-        this.props.onUnlike({name: unlikedPlace});
+        this.props.onUnlike(this.props.place.id);
     },
     render: function () {
         return (

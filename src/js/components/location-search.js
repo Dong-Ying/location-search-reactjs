@@ -2,25 +2,25 @@
 var LocationSearch = React.createClass({
     getInitialState: function () {
         return {
-            locations: [],
+            locations: [{
+                name: 'Melbourne',
+                description: 'A great place',
+                liked: false,
+                id: _.uniqueId('todo_')
+            }],
             likedPlaces: []
         };
     },
-    handleSearch: function (searchWord) {
-        $.ajax({
-            url: "http://location-backend-service.herokuapp.com/locations?name=" + searchWord
-        }).done(function (data) {
-            this.setState({locations: data});
-        }.bind(this));
-    },
-    handleLike: function (location) {
-        this.setState({likedPlaces: this.state.likedPlaces.concat([location])})
-    },
-    handleUnlike: function (location) {
-        var likedPlaces = _.reject(this.state.likedPlaces, function (likedPlace) {
-            return likedPlace.name == location.name
+    handleSearch: function (newLocations) {
+        this.setState({
+            locations: newLocations
         });
-        this.setState({likedPlaces: likedPlaces});
+    },
+    toggleLike: function(id) {
+        var locations = this.state.locations;
+        var location = _.first(_.where(locations, {id: id}));
+        location.liked = !location.liked;
+        this.setState({locations: locations});
     },
     render: function () {
         return (
@@ -34,9 +34,8 @@ var LocationSearch = React.createClass({
                 </div>
 
                 <div className="row">
-                    <SearchResult locations={this.state.locations} onLike={this.handleLike}
-                                  onUnlike={this.handleUnlike}/>
-                    <LikedPlaces likedPlaces={this.state.likedPlaces} onUnlike={this.handleUnlike}/>
+                    <SearchResult locations={this.state.locations} onToggleLike={this.toggleLike}/>
+                    <LikedPlaces locations={this.state.locations} onUnlike={this.toggleLike}/>
                 </div>
             </div>
         );
