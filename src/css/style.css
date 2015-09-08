@@ -52,6 +52,10 @@ ul {
     border-radius: 2px;
 }
 
+#likedPlaces .icon.unlike {
+    float: right;
+}
+
 #searchResults h5 {
   text-transform: uppercase;
   font-weight: bold;
@@ -68,3 +72,4 @@ ul {
   border-radius: 2px;
   border: none;
 }
+

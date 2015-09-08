@@ -1,5 +1,6 @@
-React.render(
-    <LocationSearch/>,
-    document.getElementById('location-search')
-);
-
+$(function () {
+    React.render(
+        <LocationSearch/>,
+        document.getElementById('location-search')
+    );
+});

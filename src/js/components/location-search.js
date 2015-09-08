@@ -36,7 +36,7 @@ var LocationSearch = React.createClass({
                 <div className="row">
                     <SearchResult locations={this.state.locations} onLike={this.handleLike}
                                   onUnlike={this.handleUnlike}/>
-                    <LikedPlaces likedPlaces={this.state.likedPlaces}/>
+                    <LikedPlaces likedPlaces={this.state.likedPlaces} onUnlike={this.handleUnlike}/>
                 </div>
             </div>
         );
